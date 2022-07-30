@@ -70,8 +70,7 @@ class Gui:
             [sg.Button('S8')],]
 
         layout1 = [
-            [sg.Button("DEL"), sg.Button('FIX'), sg.Button('?'), sg.Button('REF'), sg.Button('DET')
-            ],
+            [sg.Button("DEL"), sg.Button('FIX'), sg.Button('?'), sg.Button('REF'), sg.Button('DET'), sg.Text('DEL', key='hint', background_color='black')],
             [
             sg.Column(col1, element_justification='c'), 
             sg.Column(col2, element_justification='c'), 
@@ -103,9 +102,12 @@ while True:
         break
     if event == 'DEL':
         state = 0
+        window['hint'].update('DEL', background_color='black', text_color='white')
     if event == 'FIX':
         state = 1
+        window['hint'].update('FIX', background_color='red', text_color='white')
     if event == 'REF':
+        window['hint'].update('REF', background_color='green', text_color='white')
         mana_column = 0 
         mana_list = ['F', 'W', 'A', 'E', 'S']
         while mana_column < len(mana_list):
@@ -121,8 +123,10 @@ while True:
                 # window[str(btn_key)].Update(button_color = ('', ''))
             mana_column+=1
     if event == '?':
+        window['hint'].update('?', background_color='yellow', text_color='black')
         state = 2
     if event == 'DET':
+        window['hint'].update('DET')
         window[f'-COL2'].update(visible=True)
 
     # RENDERING WINDOW
