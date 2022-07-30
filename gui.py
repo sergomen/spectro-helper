@@ -69,9 +69,8 @@ class Gui:
             [sg.Button('S7')],
             [sg.Button('S8')],]
 
-        self.layout = [
-            [sg.Text("Hello from PySimpleGUI")],
-            [sg.Button("DEL"), sg.Button('OUR'), sg.Button('FIX'), sg.Button('REF'),
+        layout1 = [
+            [sg.Button("DEL"), sg.Button('FIX'), sg.Button('?'), sg.Button('REF'), sg.Button('DET')
             ],
             [
             sg.Column(col1, element_justification='c'), 
@@ -81,6 +80,16 @@ class Gui:
             sg.Column(col5, element_justification='c')
             ],
         ]
+
+        layout2 = [
+            [sg.Text("Hello from PySimpleGUI")]
+        ]
+
+        self.layout = [
+            [sg.Column(layout1, key='-COL1-'), sg.Column(layout2, key='-COL2', visible=False)],
+        ]
+
+        
 
 gui = Gui()
 window = sg.Window("spectro-helper", gui.layout)
@@ -108,11 +117,15 @@ while True:
             # Refresh all card buttons
             for card_number in range(1, card_count+1):
                 btn_key = f"{mana_list[mana_column]}{card_number}"
-                window[str(btn_key)].Update(visible=True, button_color = ('white','#1f77b4'))
+                window[str(btn_key)].Update(visible=True, button_color = ('white','#102b4a'))
                 # window[str(btn_key)].Update(button_color = ('', ''))
             mana_column+=1
-    if event == 'OUR':
+    if event == '?':
         state = 2
+    if event == 'DET':
+        window[f'-COL2'].update(visible=True)
+
+    # RENDERING WINDOW
     mana_column = 0 
     mana_list = ['F', 'W', 'A', 'E', 'S']
     while mana_column < len(mana_list):
@@ -127,7 +140,7 @@ while True:
                 if state == 1:
                     window.FindElement(event).Update(button_color = ('', 'red'))
                 if state == 2:
-                    window.FindElement(event).Update(button_color = ('', 'blue'))
+                    window.FindElement(event).Update(button_color = ('', '#e8d687'))
         mana_column+=1
     # if event == 'F1':
     #     if state == 0:
