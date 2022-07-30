@@ -71,7 +71,7 @@ class Gui:
 
         self.layout = [
             [sg.Text("Hello from PySimpleGUI")],
-            [sg.Button("DEL"), sg.Button('FIX'), sg.Button('REF'),
+            [sg.Button("DEL"), sg.Button('OUR'), sg.Button('FIX'), sg.Button('REF'),
             ],
             [
             sg.Column(col1, element_justification='c'), 
@@ -97,277 +97,297 @@ while True:
     if event == 'FIX':
         state = 1
     if event == 'REF':
-        # for i in range(1, 2):
-            
-        #     print(i)
-
-            # window.FindElement('F{i}').Update(visible=True)
-            # window.FindElement('F{i}').Update(button_color = ('', ''))
-        
         mana_column = 0 
         mana_list = ['F', 'W', 'A', 'E', 'S']
         while mana_column < len(mana_list):
+            # Divide bacis elements from Specialization
             if mana_list[mana_column] == 'S':
                 card_count = 8
             else:
                 card_count = 12
+            # Refresh all card buttons
             for card_number in range(1, card_count+1):
                 btn_key = f"{mana_list[mana_column]}{card_number}"
                 window[str(btn_key)].Update(visible=True, button_color = ('white','#1f77b4'))
                 # window[str(btn_key)].Update(button_color = ('', ''))
             mana_column+=1
-    if event == 'F1':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'F2':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))     
-    if event == 'F3':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-        
-    if event == 'F4':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))  
-    if event == 'F5':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'F6':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))     
-    if event == 'F7':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'F8':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))  
-    if event == 'F9':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'F10':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))     
-    if event == 'F11':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'F12':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
+    if event == 'OUR':
+        state = 2
+    mana_column = 0 
+    mana_list = ['F', 'W', 'A', 'E', 'S']
+    while mana_column < len(mana_list):
+        if mana_list[mana_column] == 'S':
+                card_count = 8
+        else:
+                card_count = 12
+        for card_number in range(1, card_count+1):
+            if event == f"{mana_list[mana_column]}{card_number}":
+                if state == 0:
+                    window.FindElement(event).Update(visible=False)
+                if state == 1:
+                    window.FindElement(event).Update(button_color = ('', 'red'))
+                if state == 2:
+                    window.FindElement(event).Update(button_color = ('', 'blue'))
+        mana_column+=1
+    # if event == 'F1':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    #     if state == 2:
+    #         window.FindElement(event).Update(button_color = ('', 'blue'))
+    # if event == 'F2':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))     
+    # if event == 'F3':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    #     # if state == 1 and 
+    # if event == 'F4':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))  
+    # if event == 'F5':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'F6':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))     
+    # if event == 'F7':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'F8':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))  
+    # if event == 'F9':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'F10':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))     
+    # if event == 'F11':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'F12':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
     
     # WATER
 
-    if event == 'W1':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'W2':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))     
-    if event == 'W3':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'W4':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))  
-    if event == 'W5':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'W6':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))     
-    if event == 'W7':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'W8':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))  
-    if event == 'W9':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'W10':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))     
-    if event == 'W11':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'W12':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'W1':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'W2':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))     
+    # if event == 'W3':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'W4':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))  
+    # if event == 'W5':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'W6':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))     
+    # if event == 'W7':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'W8':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))  
+    # if event == 'W9':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'W10':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))     
+    # if event == 'W11':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'W12':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
 
-    # AIR
-
-
-    if event == 'A1':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'A2':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))     
-    if event == 'A3':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'A4':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))  
-    if event == 'A5':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'A6':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))     
-    if event == 'A7':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'A8':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))  
-    if event == 'A9':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'A10':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))     
-    if event == 'A11':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'A12':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-
-    # EARTH
+    # # AIR
 
 
-    if event == 'E1':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'E2':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))     
-    if event == 'E3':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'E4':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))  
-    if event == 'E5':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'E6':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))     
-    if event == 'E7':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'E8':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))  
-    if event == 'E9':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'E10':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))     
-    if event == 'E11':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'E12':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'A1':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'A2':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))     
+    # if event == 'A3':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'A4':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))  
+    # if event == 'A5':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'A6':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))     
+    # if event == 'A7':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'A8':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))  
+    # if event == 'A9':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'A10':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))     
+    # if event == 'A11':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'A12':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+
+    # # EARTH
+
+
+    # if event == 'E1':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'E2':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))     
+    # if event == 'E3':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'E4':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))  
+    # if event == 'E5':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'E6':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))     
+    # if event == 'E7':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'E8':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))  
+    # if event == 'E9':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'E10':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))     
+    # if event == 'E11':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'E12':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+
+
+
+
+
     # if event == 'E1':
     #     window.FindElement(event).Update(button_color = ('', 'blue'))
     # if event == 'E2':
@@ -394,46 +414,46 @@ while True:
     #     window.FindElement(event).Update(button_color = ('', 'blue'))
 
 
-    if event == 'S1':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'S2':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))     
-    if event == 'S3':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'S4':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))  
-    if event == 'S5':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'S6':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))     
-    if event == 'S7':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))
-    if event == 'S8':
-        if state == 0:
-            window.FindElement(event).Update(visible=False)
-        if state == 1:
-            window.FindElement(event).Update(button_color = ('', 'red'))  
+    # if event == 'S1':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'S2':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))     
+    # if event == 'S3':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'S4':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))  
+    # if event == 'S5':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'S6':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))     
+    # if event == 'S7':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))
+    # if event == 'S8':
+    #     if state == 0:
+    #         window.FindElement(event).Update(visible=False)
+    #     if state == 1:
+    #         window.FindElement(event).Update(button_color = ('', 'red'))  
     
     
 window.close()
