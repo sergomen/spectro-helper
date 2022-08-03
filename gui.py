@@ -2,6 +2,9 @@
 
 import PySimpleGUI as sg
 from formation import func
+# from readcv import number_list
+
+
 
 class Gui:
     def __init__(self):
@@ -70,7 +73,7 @@ class Gui:
             [sg.Button('S8')],]
 
         layout1 = [
-            [sg.Button("DEL"), sg.Button('FIX'), sg.Button('?'), sg.Button('REF'), sg.Button('DET'), sg.Text('DEL', key='hint', background_color='black')],
+            [sg.Button("DEL"), sg.Button('FIX'), sg.Button('?'), sg.Button('REF'), sg.Button('PTN'), sg.Button('DET'), sg.Text('DEL', key='hint', background_color='black')],
             [
             sg.Column(col1, element_justification='c'), 
             sg.Column(col2, element_justification='c'), 
@@ -93,7 +96,6 @@ class Gui:
 gui = Gui()
 window = sg.Window("spectro-helper", gui.layout)
 state = 0
-
 
 
 while True:
@@ -125,6 +127,8 @@ while True:
     if event == '?':
         window['hint'].update('?', background_color='yellow', text_color='black')
         state = 2
+    # if event == 'PTN':
+
     if event == 'DET':
         window['hint'].update('DET')
         window[f'-COL2'].update(visible=True)
@@ -147,6 +151,15 @@ while True:
                     window.FindElement(event).Update(button_color = ('', '#e8d687'))
         mana_column+=1
 
+    # for i in range(0, 4):
+    #     window[str(f"F{number_list[i]}")].Update(visible=False)
+    # for i in range(4, 8):
+    #     window[str(f"W{number_list[i]}")].Update(visible=False)
+    # for i in range(8, 12):
+    #     window[str(f"A{number_list[i]}")].Update(visible=False)
+    # for i in range(12, 16):
+    #     window[str(f"E{number_list[i]}")].Update(visible=False)
+        # print(number_list[i])
     # if event == 'S1':
     #     if state == 0:
     #         window.FindElement(event).Update(visible=False)
