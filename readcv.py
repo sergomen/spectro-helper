@@ -65,7 +65,7 @@ card_f4 = threshold_img[688:704, 577:595]
 card_w1 = threshold_img[376:392, 682:698] # circle4
 card_w2 = threshold_img[480:496, 682:699] # square
 card_w3 = threshold_img[585:599, 682:699] # square
-card_w4 = threshold_img[688:704, 682:699] # square
+card_w4 = threshold_img[689:704, 682:699] # square
 
 card_a1 = threshold_img[375:392, 788:801] # square
 card_a2 = threshold_img[480:496, 788:801] # square
@@ -75,11 +75,11 @@ card_a4 = threshold_img[688:704, 788:802] # circle
 card_e1 = threshold_img[374:392, 892:904] # circle
 card_e2 = threshold_img[480:496, 892:904] # circle
 card_e3 = threshold_img[586:599, 892:904] # square
-card_e4 = threshold_img[688:704, 892:904] # square
+card_e4 = threshold_img[688:704, 892:905] # square
 # y1+=8 y2+=9
 #spell_f1
 spell_f2 = threshold_img[488:505, 575:595]
-spell_f3 = threshold_img[593:608, 577:595] # changed
+spell_f3 = threshold_img[593:608, 578:595] # changed
 spell_f4 = threshold_img[696:713, 575:595]
 
 spell_w1 = threshold_img[384:401, 682:699] # changed
@@ -92,14 +92,14 @@ spell_a2 = threshold_img[488:505, 788:801]
 spell_a3 = threshold_img[593:608, 788:801]
 spell_a4 = threshold_img[696:713, 788:801]
 
-spell_e1 = threshold_img[383:401, 892:904]
+spell_e1 = threshold_img[384:401, 892:904]
 spell_e2 = threshold_img[488:504, 893:904]
 spell_e3 = threshold_img[593:608, 890:904]
 #spell_e4
 df_spell = pd.DataFrame({ 
-                    'y1':[383, 488, 593, 696, 384, 488, 593, 696, 383, 488, 593, 696, 383, 488, 593, 696],
+                    'y1':[383, 488, 593, 696, 384, 488, 593, 696, 383, 488, 593, 696, 384, 488, 593, 696],
                     'y2':[401, 505, 608, 713, 401, 505, 608, 713, 401, 505, 608, 713, 401, 504, 608, 713],
-                    'x1':[575, 575, 577, 575, 682, 682, 682, 788, 788, 788, 788, 788, 892, 893, 892, 892],
+                    'x1':[575, 575, 578, 575, 682, 682, 682, 788, 788, 788, 788, 788, 892, 893, 892, 892],
                     'x2':[595, 595, 595, 595, 699, 699, 699, 801, 801, 801, 801, 801, 904, 904, 904, 904]
                     })
 df_is_spell = pd.DataFrame({
@@ -144,8 +144,8 @@ custom_config = '--psm 10 --oem 3 -c tessedit_char_whitelist=0123456789'#'--psm 
 #'--oem 3 --psm 6'#'--psm 10 --oem 3 -c tessedit_char_whitelist=0123456789 %' 
 #'--oem 3 --psm 6'#'--oem 3 --psm 6'
  #r'--oem 3 --psm 6'
-card_f3 = cv2.resize(spell_e2, None, fx=4.2, fy=4.2, interpolation=cv2.INTER_CUBIC)
-# card_f4 = cv2.resize(card_f4, None, fx=4.2, fy=4.2, interpolation=cv2.INTER_CUBIC)
+card_f3 = cv2.resize(spell_e1, None, fx=4.2, fy=4.2, interpolation=cv2.INTER_CUBIC)
+# card_e4 = cv2.resize(card_e4, None, fx=4.2, fy=4.2, interpolation=cv2.INTER_CUBIC)
 details = pytesseract.image_to_data(card_f3, output_type=Output.DICT, config=custom_config, lang='eng')
 print(details['text'])
 cv2.imshow('captured text', card_f3)
@@ -158,7 +158,7 @@ for ind in df_is_spell.index:
     if ind == 5:
         cv2.imshow('Spell Diff', spell)
     print('Differ', diff)
-    if (diff[2][10] + diff[2][11]) < 12 and diff[3][10] + diff[3][11] + diff[3][12] + diff[2][13] < 20 and diff[3][13] < 20 and diff[4][13]< 30:#diff[4][14] + diff[2][10] < 20 or diff[3][10] < 10:
+    if (diff[2][10] + diff[2][11]) < 30 and diff[3][10] + diff[3][11] + diff[3][12] + diff[2][13] < 20 and diff[3][13] < 20 and diff[4][13]< 30 and diff[4][12] < 60:#diff[4][14] + diff[2][10] < 20 or diff[3][10] < 10:
         print('PRINTIM', diff[2][10])
         deck_list[ind] = threshold_img[df_spell['y1'][ind]:df_spell['y2'][ind], df_spell['x1'][ind]:df_spell['x2'][ind]]
         print('Spell is found!')
@@ -177,8 +177,8 @@ for card in deck_list:
 # print(details['text'][4])
 
     try:
-        if details['text'][4] == '111':
-            details['text'][4] = 10
+        if details['text'][4] == '' and card == 'card_f3':
+            details['text'][4] = '9'
     except:
         pass
     # print(details['text'])

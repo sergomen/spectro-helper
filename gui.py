@@ -2,7 +2,7 @@
 
 import PySimpleGUI as sg
 from formation import func
-# from readcv import number_list
+from readcv import number_list
 
 
 
@@ -151,14 +151,14 @@ while True:
                     window.FindElement(event).Update(button_color = ('', '#e8d687'))
         mana_column+=1
 
-    # for i in range(0, 4):
-    #     window[str(f"F{number_list[i]}")].Update(visible=False)
-    # for i in range(4, 8):
-    #     window[str(f"W{number_list[i]}")].Update(visible=False)
-    # for i in range(8, 12):
-    #     window[str(f"A{number_list[i]}")].Update(visible=False)
-    # for i in range(12, 16):
-    #     window[str(f"E{number_list[i]}")].Update(visible=False)
+    for i in range(0, 4):
+        window[str(f"F{number_list[i]}")].Update(visible=False)
+    for i in range(4, 8):
+        window[str(f"W{number_list[i]}")].Update(visible=False)
+    for i in range(8, 12):
+        window[str(f"A{number_list[i]}")].Update(visible=False)
+    for i in range(12, 16):
+        window[str(f"E{number_list[i]}")].Update(visible=False)
         # print(number_list[i])
     # if event == 'S1':
     #     if state == 0:
