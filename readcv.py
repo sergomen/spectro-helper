@@ -58,7 +58,7 @@ cv2.imshow('Difference', spell2_img)
 #                     'x1':[580, 575, ],
 #                     'x2':[]})
 card_f1 = threshold_img[375:392, 575:595] #y, x
-card_f2 = threshold_img[480:496, 575:595]
+card_f2 = threshold_img[480:496, 576:595]
 card_f3 = threshold_img[585:599, 577:595]
 card_f4 = threshold_img[688:704, 577:595]
 
@@ -74,7 +74,7 @@ card_a4 = threshold_img[688:704, 788:802] # circle
 
 card_e1 = threshold_img[374:392, 892:904] # circle
 card_e2 = threshold_img[480:496, 892:904] # circle
-card_e3 = threshold_img[586:599, 892:904] # square
+card_e3 = threshold_img[586:599, 892:905] # square
 card_e4 = threshold_img[688:704, 892:905] # square
 # y1+=8 y2+=9
 #spell_f1
@@ -144,11 +144,11 @@ custom_config = '--psm 10 --oem 3 -c tessedit_char_whitelist=0123456789'#'--psm 
 #'--oem 3 --psm 6'#'--psm 10 --oem 3 -c tessedit_char_whitelist=0123456789 %' 
 #'--oem 3 --psm 6'#'--oem 3 --psm 6'
  #r'--oem 3 --psm 6'
-card_f3 = cv2.resize(spell_e1, None, fx=4.2, fy=4.2, interpolation=cv2.INTER_CUBIC)
-# card_e4 = cv2.resize(card_e4, None, fx=4.2, fy=4.2, interpolation=cv2.INTER_CUBIC)
-details = pytesseract.image_to_data(card_f3, output_type=Output.DICT, config=custom_config, lang='eng')
+# card_f3 = cv2.resize(spell_e1, None, fx=4.2, fy=4.2, interpolation=cv2.INTER_CUBIC)
+card_e4 = cv2.resize(card_f2, None, fx=4.2, fy=4.2, interpolation=cv2.INTER_CUBIC)
+details = pytesseract.image_to_data(card_e4, output_type=Output.DICT, config=custom_config, lang='eng')
 print(details['text'])
-cv2.imshow('captured text', card_f3)
+cv2.imshow('captured text', card_e4)
 
 for ind in df_is_spell.index:
     print(ind)

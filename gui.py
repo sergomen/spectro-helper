@@ -4,8 +4,6 @@ import PySimpleGUI as sg
 from formation import func
 from readcv import number_list
 
-
-
 class Gui:
     def __init__(self):
         sz = (10, 2)
@@ -108,6 +106,9 @@ while True:
     if event == 'FIX':
         state = 1
         window['hint'].update('FIX', background_color='red', text_color='white')
+    if event == '?':
+        window['hint'].update('?', background_color='yellow', text_color='black')
+        state = 2
     if event == 'REF':
         window['hint'].update('REF', background_color='green', text_color='white')
         mana_column = 0 
@@ -124,11 +125,16 @@ while True:
                 window[str(btn_key)].Update(visible=True, button_color = ('white','#102b4a'))
                 # window[str(btn_key)].Update(button_color = ('', ''))
             mana_column+=1
-    if event == '?':
-        window['hint'].update('?', background_color='yellow', text_color='black')
-        state = 2
-    # if event == 'PTN':
-
+    
+    if event == 'PTN':
+        for i in range(0, 4):
+            window[str(f"F{number_list[i]}")].Update(visible=False)
+        for i in range(4, 8):
+            window[str(f"W{number_list[i]}")].Update(visible=False)
+        for i in range(8, 12):
+            window[str(f"A{number_list[i]}")].Update(visible=False)
+        for i in range(12, 16):
+            window[str(f"E{number_list[i]}")].Update(visible=False)
     if event == 'DET':
         window['hint'].update('DET')
         window[f'-COL2'].update(visible=True)
@@ -144,22 +150,13 @@ while True:
         for card_number in range(1, card_count+1):
             if event == f"{mana_list[mana_column]}{card_number}":
                 if state == 0:
-                    window.FindElement(event).Update(visible=False)
+                    window[event].Update(visible=False)
                 if state == 1:
-                    window.FindElement(event).Update(button_color = ('', 'red'))
+                    window[event].Update(button_color = ('', 'red'))
                 if state == 2:
-                    window.FindElement(event).Update(button_color = ('', '#e8d687'))
+                    window[event].Update(button_color = ('', '#e8d687'))
         mana_column+=1
 
-    for i in range(0, 4):
-        window[str(f"F{number_list[i]}")].Update(visible=False)
-    for i in range(4, 8):
-        window[str(f"W{number_list[i]}")].Update(visible=False)
-    for i in range(8, 12):
-        window[str(f"A{number_list[i]}")].Update(visible=False)
-    for i in range(12, 16):
-        window[str(f"E{number_list[i]}")].Update(visible=False)
-        # print(number_list[i])
     # if event == 'S1':
     #     if state == 0:
     #         window.FindElement(event).Update(visible=False)
