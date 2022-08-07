@@ -72,9 +72,9 @@ card_a2 = threshold_img[480:496, 788:801] # square
 card_a3 = threshold_img[585:599, 788:801] # circle
 card_a4 = threshold_img[688:704, 788:802] # circle
 
-card_e1 = threshold_img[374:392, 892:904] # circle
+card_e1 = threshold_img[377:391, 892:905] # circle
 card_e2 = threshold_img[480:496, 892:904] # circle
-card_e3 = threshold_img[586:599, 892:905] # square
+card_e3 = threshold_img[586:599, 892:906] # square
 card_e4 = threshold_img[688:704, 892:905] # square
 # y1+=8 y2+=9
 #spell_f1
@@ -145,7 +145,7 @@ custom_config = '--psm 10 --oem 3 -c tessedit_char_whitelist=0123456789'#'--psm 
 #'--oem 3 --psm 6'#'--oem 3 --psm 6'
  #r'--oem 3 --psm 6'
 # card_f3 = cv2.resize(spell_e1, None, fx=4.2, fy=4.2, interpolation=cv2.INTER_CUBIC)
-card_e4 = cv2.resize(card_f2, None, fx=4.2, fy=4.2, interpolation=cv2.INTER_CUBIC)
+card_e4 = cv2.resize(card_e1, None, fx=4.2, fy=4.2, interpolation=cv2.INTER_CUBIC)
 details = pytesseract.image_to_data(card_e4, output_type=Output.DICT, config=custom_config, lang='eng')
 print(details['text'])
 cv2.imshow('captured text', card_e4)
@@ -158,7 +158,7 @@ for ind in df_is_spell.index:
     if ind == 5:
         cv2.imshow('Spell Diff', spell)
     print('Differ', diff)
-    if (diff[2][10] + diff[2][11]) < 30 and diff[3][10] + diff[3][11] + diff[3][12] + diff[2][13] < 20 and diff[3][13] < 20 and diff[4][13]< 30 and diff[4][12] < 60:#diff[4][14] + diff[2][10] < 20 or diff[3][10] < 10:
+    if (diff[2][10] + diff[2][11]) < 20 and diff[3][10] + diff[3][11] + diff[3][12] + diff[2][13] < 28 and diff[3][13] < 20 and diff[4][13]< 30 and diff[4][12] < 60:#diff[4][14] + diff[2][10] < 20 or diff[3][10] < 10:
         print('PRINTIM', diff[2][10])
         deck_list[ind] = threshold_img[df_spell['y1'][ind]:df_spell['y2'][ind], df_spell['x1'][ind]:df_spell['x2'][ind]]
         print('Spell is found!')
@@ -183,15 +183,16 @@ for card in deck_list:
         pass
     # print(details['text'])
     total_boxes = len(details['text'])
-    for sequence_number in range(total_boxes):
-        if int(float(details['conf'][sequence_number])) > 30:
-            (x, y, w, h) = (details['left'][sequence_number], details['top'][sequence_number], details['width'][sequence_number], details['height'][sequence_number])
-            card_img = cv2.rectangle(card, (x, y), (x+w, y+h), (0,255,0), 2)
+    # for sequence_number in range(total_boxes):
+    #     if int(float(details['conf'][sequence_number])) > 30:
+    #         (x, y, w, h) = (details['left'][sequence_number], details['top'][sequence_number], details['width'][sequence_number], details['height'][sequence_number])
+    #         card_img = cv2.rectangle(card, (x, y), (x+w, y+h), (0,255,0), 2)
     
     for word in details['text']:
         if word != '':
             number_list.append(word)
             print(number_list)
+    
 # Display image
 # cv2.imshow('captured text', card_e3)
 # Maintain output window until user presses a key
