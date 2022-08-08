@@ -4,16 +4,19 @@ import pytesseract
 from pytesseract import Output
 import pandas as pd
 
-from PIL import Image, ImageGrab, ImageChops
+from PIL import Image, ImageGrab
 import numpy as np
 
-printscreen = np.array(ImageGrab.grab(bbox=(0,0,1024,800)))
-# printscreen = np.array(pyautogui.screenshot(region=(0, 0, 1024, 800)))
-cv2.imshow('captured text2', printscreen)
-# cv2.imwrite('', printscreen)
-# printscreen.save("spell2.png")
 pytesseract.pytesseract.tesseract_cmd = "C:\Program Files\Tesseract-OCR\Tesseract.exe"
+
 number_list = []
+# do a printscreen of the specific part of monitor
+printscreen = np.array(ImageGrab.grab(bbox=(0,0,1024,800)))
+# cv2.imshow('printscreen', printscreen)
+# save a prienscreen as a file
+# cv2.imwrite('', printscreen)
+
+
 # Reading image using opencv
 # image = cv2.imread('image.png')
 # (height,width) = image.shape[:2]

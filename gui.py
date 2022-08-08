@@ -70,6 +70,7 @@ class Gui:
             [sg.Button('S7')],
             [sg.Button('S8')],]
 
+        # -------------------------Create the two layouts this window will display------------------- 
         layout1 = [
             [sg.Button("DEL"), sg.Button('FIX'), sg.Button('?'), sg.Button('REF'), sg.Button('PTN'), sg.Button('DET'), sg.Text('DEL', key='hint', background_color='black')],
             [
@@ -97,7 +98,7 @@ state = 0
 
 
 while True:
-    event, values = window.read()
+    event, values = window.read()☺
     if event == sg.WIN_CLOSED:
         break
     if event == 'DEL':
