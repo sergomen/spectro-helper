@@ -7,68 +7,37 @@ from readcv import number_list
 class Gui:
     def __init__(self):
         sz = (10, 2)
-        col1 = [
-            [sg.Text('Fire', background_color='red', size=sz)],
-            [sg.Button('F1', key='F1')],
-            [sg.Button('F2')],
-            [sg.Button('F3')],
-            [sg.Button('F4')],
-            [sg.Button('F5')],
-            [sg.Button('F6')],
-            [sg.Button('F7')],
-            [sg.Button('F8')],
-            [sg.Button('F9')],
-            [sg.Button('F10')],
-            [sg.Button('F11')],
-            [sg.Button('F12')],]
-        col2 = [[sg.Text('Water', background_color='blue', size=sz)],
-            [sg.Button('W1')],
-            [sg.Button('W2')],
-            [sg.Button('W3')],
-            [sg.Button('W4')],
-            [sg.Button('W5')],
-            [sg.Button('W6')],
-            [sg.Button('W7')],
-            [sg.Button('W8')],
-            [sg.Button('W9')],
-            [sg.Button('W10')],
-            [sg.Button('W11')],
-            [sg.Button('W12')],]
-        col3 = [[sg.Text('Air', background_color='gray', size=sz)],
-            [sg.Button('A1')],
-            [sg.Button('A2')],
-            [sg.Button('A3')],
-            [sg.Button('A4')],
-            [sg.Button('A5')],
-            [sg.Button('A6')],
-            [sg.Button('A7')],
-            [sg.Button('A8')],
-            [sg.Button('A9')],
-            [sg.Button('A10')],
-            [sg.Button('A11')],
-            [sg.Button('A12')],]
-        col4 = [[sg.Text('Earth', background_color='green', size=sz)],
-            [sg.Button('E1')],
-            [sg.Button('E2')],
-            [sg.Button('E3')],
-            [sg.Button('E4')],
-            [sg.Button('E5')],
-            [sg.Button('E6')],
-            [sg.Button('E7')],
-            [sg.Button('E8')],
-            [sg.Button('E9')],
-            [sg.Button('E10')],
-            [sg.Button('E11')],
-            [sg.Button('E12')],]
-        col5 = [[sg.Text('Special', background_color='black', size=sz)],
-            [sg.Button('S1')],
-            [sg.Button('S2')],
-            [sg.Button('S3')],
-            [sg.Button('S4')],
-            [sg.Button('S5')],
-            [sg.Button('S6')],
-            [sg.Button('S7')],
-            [sg.Button('S8')],]
+        fire = ['F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12']
+        water = ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'W9', 'W10', 'W11', 'W12']
+        air = ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'A10', 'A11', 'A12']
+        earth = ['E1', 'E2', 'E3', 'E4', 'E5', 'E6', 'E7', 'E8', 'E9', 'E10', 'E11', 'E12']
+        special = ['S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8']
+        col1 = [[sg.Text('Fire', background_color='red', size=sz)]]
+        # Create several similar fire buttons in the vertical column
+        for card in fire:
+            col1 += [
+                [sg.Button(card, key=card)]
+            ]
+        col2 = [[sg.Text('Water', background_color='blue', size=sz)]]
+        for card in water:
+            col2 += [
+                [sg.Button(card, key=card)]
+            ]
+        col3 = [[sg.Text('Air', background_color='gray', size=sz)]]
+        for card in air:
+            col3 += [
+                [sg.Button(card, key=card)]
+            ]
+        col4 = [[sg.Text('Earth', background_color='green', size=sz)]]
+        for card in earth:
+            col4 += [
+                [sg.Button(card, key=card)]
+            ]
+        col5 = [[sg.Text('Special', background_color='black', size=sz)]]
+        for card in special:
+            col5 += [
+                [sg.Button(card, key=card)]
+            ]
 
         # -------------------------Create the two layouts this window will display------------------- 
         layout1 = [
@@ -98,7 +67,7 @@ state = 0
 
 
 while True:
-    event, values = window.read()☺
+    event, values = window.read()
     if event == sg.WIN_CLOSED:
         break
     if event == 'DEL':
