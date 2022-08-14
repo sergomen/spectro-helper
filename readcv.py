@@ -112,8 +112,7 @@ df_is_spell = pd.DataFrame({
                     'x2':[595, 595, 595, 595, 699, 699, 699, 699, 801, 801, 801, 801, 904, 904, 904, 904]
 })
 
-# print(df_spell)
-# spell_img = threshold_img[375:382, 560:580]
+
 ind = 13
 spell_img = threshold_img[df_is_spell['y1'][ind]:df_is_spell['y2'][ind], df_is_spell['x1'][ind]-15:df_is_spell['x2'][ind]-15]
 
@@ -124,11 +123,7 @@ cv2.imshow('Pokaji1', spell_img)
 cv2.imshow('Pokaji2', spell)
 diff = cv2. absdiff(spell_img, spell)
 print('Sledim', diff)
-# spell_img2 = threshold_img[585:592, 575:595]
-# diff = cv2.absdiff(spell_img, spell_img2)
-# print('This is a diff', diff[0][0])
-# if diff[0][0] < 10:
-#     print('This is a spell!')
+
 for ind in df_is_spell.index:
     print(ind)
     spell_img = threshold_img[df_is_spell['y1'][ind]:df_is_spell['y2'][ind], df_is_spell['x1'][ind]-15:df_is_spell['x2'][ind]-15]
@@ -143,10 +138,8 @@ for ind in df_is_spell.index:
 
 deck_list = [card_f1, card_f2, card_f3, card_f4, card_w1, card_w2, card_w3, card_w4, card_a1, card_a2, card_a3, card_a4, card_e1, card_e2, card_e3, card_e4]
 
-custom_config = '--psm 10 --oem 3 -c tessedit_char_whitelist=0123456789'#'--psm 10 --oem 3 -c tessedit_char_whitelist=0123456789'
-#'--oem 3 --psm 6'#'--psm 10 --oem 3 -c tessedit_char_whitelist=0123456789 %' 
-#'--oem 3 --psm 6'#'--oem 3 --psm 6'
- #r'--oem 3 --psm 6'
+custom_config = '--psm 10 --oem 3 -c tessedit_char_whitelist=0123456789'
+
 # card_f3 = cv2.resize(spell_e1, None, fx=4.2, fy=4.2, interpolation=cv2.INTER_CUBIC)
 card_e4 = cv2.resize(card_e1, None, fx=4.2, fy=4.2, interpolation=cv2.INTER_CUBIC)
 details = pytesseract.image_to_data(card_e4, output_type=Output.DICT, config=custom_config, lang='eng')
