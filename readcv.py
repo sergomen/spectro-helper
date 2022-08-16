@@ -28,23 +28,10 @@ threshold_img = cv2.threshold(gray_image, 0, 255, cv2.THRESH_TRUNC | cv2.THRESH_
 # Configuring parameters for tesseract
 # threshold_img = 255 - cv2.GaussianBlur(threshold_img, (5,5), 0)
 # Get part of image
-# card_img = threshold_img[300:800, 500:1200]
-# spell_img = printscreen[552:575, 566:589]
-# spell2_img = printscreen[552:575, 566:589]
 spell_img = np.array(Image.open("spell_img.png"))
 spell2_img = printscreen[585:592, 575:595] #y+7
-# diff = cv2.absdiff(spell_img, spell2_img)
-# print(diff[0][0][0])
-# cv2.imwrite('spell_img.png', spell2_img)
 cv2.imshow('Is spell?', spell2_img)
 
-# diff = ImageChops.difference(spell_img, spell2_img)
-# print(diff.getbbox())
-# diff.show()
-# if spell_img == cv2.imread('spell.jpg'):
-#     print("YES")
-# cv2.imshow('Spell', diff)
-# print(diff)
 # for card in range(17):
 spell2_img = printscreen[480:487, 580:592]
 cv2.imshow('Difference', spell2_img)
