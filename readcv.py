@@ -35,18 +35,7 @@ cv2.imshow('Is spell?', spell2_img)
 # for card in range(17):
 spell2_img = printscreen[480:487, 580:592]
 cv2.imshow('Difference', spell2_img)
-# diff = cv2.absdiff(spell_img, spell2_img)
-# print(diff[0][0][0])
-#     if threshold[m1:m2: n1:n2] == spell_img:
-#         y1, y2, x1, x2 = 
-#     else:
-#         y1, y2, x1, x2 = 
-#     card = threshold_img[y1:y2, x1:x2]
-# Creating the Pandas DataFrame
-# df = pd.DataFrame({ 'y1':[370, 480, 586, 688],
-#                     'y2':[377, 487, 593, 695],
-#                     'x1':[580, 575, ],
-#                     'x2':[]})
+
 card_f1 = threshold_img[375:392, 575:595] #y, x
 card_f2 = threshold_img[480:496, 576:595]
 card_f3 = threshold_img[585:599, 577:595]
