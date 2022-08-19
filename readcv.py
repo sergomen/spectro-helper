@@ -19,8 +19,7 @@ printscreen = np.array(ImageGrab.grab(bbox=(0,0,1024,800)))
 
 # Reading image using opencv
 # image = cv2.imread('image.png')
-# (height,width) = image.shape[:2]
-# image = cv2.resize(image, (width*4, height*4))
+
 # Converting image into gray scale image
 gray_image = cv2.cvtColor(printscreen, cv2.COLOR_BGR2GRAY)
 # Converting it to binary image by Thresholding
