@@ -152,7 +152,6 @@ for card in deck_list:
             details['text'][4] = '9'
     except:
         pass
-    # print(details['text'])
     total_boxes = len(details['text'])
     # for sequence_number in range(total_boxes):
     #     if int(float(details['conf'][sequence_number])) > 30:
@@ -164,8 +163,6 @@ for card in deck_list:
             number_list.append(word)
             print(number_list)
     
-# Display image
-# cv2.imshow('captured text', card_e3)
 # Maintain output window until user presses a key
 cv2.waitKey(0)
 # Destroying present windows on screen
