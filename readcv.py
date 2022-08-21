@@ -143,9 +143,6 @@ for card in deck_list:
     cv2.imshow('card f2', card_f2)
 # Feeding image to tesseract
     details = pytesseract.image_to_data(card, output_type=Output.DICT, config=custom_config, lang='eng')
-# print(range(details['text']))
-# for i in range(details['text']):
-# print(details['text'][4])
 
     try:
         if details['text'][4] == '' and card == 'card_f3':
