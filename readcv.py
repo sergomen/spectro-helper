@@ -115,7 +115,6 @@ deck_list = [card_f1, card_f2, card_f3, card_f4, card_w1, card_w2, card_w3, card
 
 custom_config = '--psm 10 --oem 3 -c tessedit_char_whitelist=0123456789'
 
-# card_f3 = cv2.resize(spell_e1, None, fx=4.2, fy=4.2, interpolation=cv2.INTER_CUBIC)
 card_e4 = cv2.resize(card_e1, None, fx=4.2, fy=4.2, interpolation=cv2.INTER_CUBIC)
 details = pytesseract.image_to_data(card_e4, output_type=Output.DICT, config=custom_config, lang='eng')
 print(details['text'])
